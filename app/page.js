@@ -16,7 +16,12 @@ const page = () => {
     <form>
       <input type='text' 
       className='text 2xl border-zinc-800 border-4 m-5 px-4 py-2 '
-      placeholder='Enter Task here ! ' // That thing is display on that box when there is nothing writtern 
+      placeholder='Enter title here ! ' // That thing is display on that box when there is nothing writtern
+      value={title} 
+      onChange={(e)=>{
+        // console.log(e.target.value)
+        settitle(e.target.value)
+      }}
       />
 
       <input type='text' 
