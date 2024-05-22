@@ -1,6 +1,12 @@
-import React from 'react'
+"use client"
+import React, { useState } from 'react'
 
 const page = () => {
+  // By using useStatesnippet We can make Variables in React .
+
+  const [title, settitle] = useState("") 
+  const [desc, setdesc] = useState("")
+
   return (
     //Fragerant ( Empty Tag )
     <>
