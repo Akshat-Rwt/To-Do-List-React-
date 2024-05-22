@@ -6,14 +6,34 @@ const page = () => {
 
   const [title, settitle] = useState("") 
   const [desc, setdesc] = useState("")
+  const [mainTask, setmainTask] = useState([])
   
-  //Problem : Its that when we submit the form it refresh and cannot store a value so for that thing we can add a function so that can store the value and when you submit the form it cannot reload the page 
+  //Problem : Its that when we submit the form it refresh and cannot store a value so for that thing we can add a function so that can store the value and when you submit the form it cannot reload the page  
 
   const submitHandler = (e)=>{
-    console.log("hehen")
+     // console.log("hehen")
     e.preventDefault()
+
+    setmainTask([...mainTask, { title, desc }])
     settitle("")
     setdesc("")
+    console.log(mainTask)
+  }
+
+  let renderTask = <h2>No Task Available </h2>
+
+  if(mainTask > 0) {
+    renderTask = mainTask.map((t,i)=>{
+      return(
+        <li>
+          <div className='flex justify-between mb-5 '>
+            <h5 className='text-2xl font-semibold'>{t.title}</h5>
+            <h6 className='text-xl font-semibold'>{t.desc}</h6>
+          </div>
+        </li>
+        
+      )
+    })
   }
 
   return (
@@ -44,7 +64,7 @@ const page = () => {
       value={desc}  
       onChange={(e)=>{ 
         // console.log(e.target.value)
-        settitle(e.target.value)
+        setdesc(e.target.value)
       }} 
       />
 
@@ -52,6 +72,12 @@ const page = () => {
 
     </form>
 
+    <br/>
+    <div className='bg-slate-200 p-8'>
+      <ul>
+        {renderTask}
+      </ul>        
+    </div>
     
     </>
   )
