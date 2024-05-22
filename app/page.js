@@ -20,16 +20,27 @@ const page = () => {
     console.log(mainTask)
   }
 
+  const DeleteHandler = (i)=>{
+    let copytask = [...mainTask]
+    copytask.splice(i,1)
+    setmainTask(copytask)
+  }
+
   let renderTask = <h2>No Task Available </h2>
 
   if(mainTask.length > 0) {
     renderTask = mainTask.map((t,i)=>{
       return(
-        <li>
-          <div className='flex justify-between mb-5 '>
-            <h5 className='text-2xl font-semibold'>{t.title}</h5>
+        <li key={i} className='flex items-center justify-between mb-5'>
+          <div className=' w-2/3 '>
+            <h2 className='text-4xl font-bold'>{t.title}</h2>
             <h6 className='text-xl font-semibold'>{t.desc}</h6>
           </div>
+          <button
+          onClick={()=>{
+            DeleteHandler(i) 
+          }} 
+          className='bg-red-500 text-white px-4 py-2 rounded font-bold'>Delete </button>
         </li>
         
       )
@@ -42,34 +53,38 @@ const page = () => {
       <h1 className='bg-black text-white p-5 text-center font-bold text-5xl'> Akshat's TO DO LIST </h1>
    
 
-    <form onSubmit={submitHandler}>
-      <input type='text' 
-      className='text 2xl border-zinc-800 border-4 m-5 px-4 py-2 '
-      placeholder='Enter Title here ! ' // That thing is display on that box when there is nothing writtern
+    <form onSubmit={submitHandler}  >
       
-      //2-Ways Binding 
-      // Here I am doing 2-way binding . It means that tell the data to the react and also show the data to the user .
 
-      value={title}  
-      onChange={(e)=>{ 
-        // console.log(e.target.value)
-        settitle(e.target.value)
-      }}
-      />
+        <input type='text' 
+        className='text 2xl border-zinc-800 border-4 m-5 px-4 py-2 '
+        placeholder='Enter Title here ! ' // That thing is display on that box when there is nothing writtern
+      
+        //2-Ways Binding 
+        // Here I am doing 2-way binding . It means that tell the data to the react and also show the data to the   user .
 
-      <input type='text' 
-      className='text 2xl border-zinc-800 border-4 m-5 px-4 py-2 '
-      placeholder='Add Description here... ' 
+        value={title}  
+        onChange={(e)=>{ 
+          // console.log(e.target.value)
+          settitle(e.target.value)
+        }}
+        />
 
-      value={desc}  
-      onChange={(e)=>{ 
-        // console.log(e.target.value)
-        setdesc(e.target.value)
-      }} 
-      />
+        <input type='text' size="70"
+        className='text 2xl border-zinc-800 border-4 m-5 px-4 py-2  '
+        placeholder='Add Description here... ' 
 
-      <button className='bg-black text-white px-4 py-3 m-5 font-bold text-2xl rounded'> Add Task </button>
+        value={desc}  
+        onChange={(e)=>{ 
+          // console.log(e.target.value)
+          setdesc(e.target.value)
+        }} 
+        />
 
+        <button className='bg-black text-white px-4 py-3 m-5 font-bold text-2xl rounded'> Add Task </button>
+
+      
+      
     </form>
 
     <br/>
