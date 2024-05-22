@@ -22,7 +22,7 @@ const page = () => {
 
   let renderTask = <h2>No Task Available </h2>
 
-  if(mainTask > 0) {
+  if(mainTask.length > 0) {
     renderTask = mainTask.map((t,i)=>{
       return(
         <li>
